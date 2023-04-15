@@ -1,0 +1,247 @@
+\ProvidesPackage{mynote}[2020/09/04 v0.3.0]
+
+% 中文标点符号
+\RequirePackage{xeCJKfntef}
+% 眉首眉脚
+\RequirePackage{fancyhdr}
+% 颜色支持
+\RequirePackage[dvipsnames]{xcolor}
+% 代码提示
+\RequirePackage{listings}
+% 版边边距
+\RequirePackage[left=2cm, right=2cm, bottom=2cm, headheight=14pt]{geometry}
+% 更加现代定理、引用提示
+\RequirePackage{tcolorbox}
+% 书签
+\RequirePackage[open, openlevel=2, atend]{bookmark}
+% 链接
+\RequirePackage{hyperref}
+
+%%% 颜色定义 %%%
+% 水
+\providecolor{水蓝}{HTML}{d2f0f4}
+% 蓝
+\providecolor{靛蓝}{HTML}{065279}
+\providecolor{靛青}{HTML}{177cb0}
+% 红
+\providecolor{桃红}{HTML}{f47983}
+\providecolor{品红}{HTML}{f00056}
+\providecolor{丹}{HTML}{ff4e20}
+% 绿
+\providecolor{绿沈}{HTML}{0c8918}
+\providecolor{青碧}{HTML}{48c0a3}
+\providecolor{缥}{HTML}{7fecad}
+\providecolor{艾绿}{HTML}{a4e2c6}
+\providecolor{嫩绿}{HTML}{bddd22}
+\providecolor{青白}{HTML}{c0ebd7}
+% 黄
+\providecolor{姜黄}{HTML}{ffc773}
+\providecolor{橙色}{HTML}{fa8c35}
+% 灰
+\providecolor{苍白}{HTML}{d1d9e0}
+\providecolor{苍青}{HTML}{7397ab}
+% 黑
+\providecolor{漆黑}{HTML}{161823}
+\providecolor{墨色}{HTML}{50616d}
+% 白
+\providecolor{莹白}{HTML}{e3f9fd}
+\providecolor{雪白}{HTML}{f2fdff}
+\providecolor{月白}{HTML}{d6ecf0}
+\providecolor{花白}{HTML}{c2ccd0}
+\providecolor{灰白}{HTML}{f0f0f4}
+
+
+%%% CTEX格式设置 %%%
+\ctexset{
+	today=big,
+	contentsname=\textbf{Contents},
+	section={beforeskip=0pt,afterskip=10pt},    
+	part/format=\huge\bfseries\centering\color{靛蓝},
+	chapter/format=\LARGE\bfseries\centering\color{靛蓝},
+	section/format=\Large\bfseries\centering\color{靛蓝},
+	subsection/number={\textcolor{靛蓝}{\thesection}},
+}
+
+%%% 链接设置 %%%
+\hypersetup{
+	colorlinks=true,
+	linkcolor=品红,
+	urlcolor=靛青,
+	filecolor=青碧,
+}
+
+
+
+%%% 页眉页脚设置 %%%
+
+\pagestyle{fancy}
+\fancyhead[L]{}
+\fancyhead[C]{\textcolor{靛蓝}{\leftmark}}
+\fancyhead[R]{\textcolor{靛蓝}{第\thepage 页}}
+\fancyfoot{}
+\renewcommand{\headrule}{\color{靛蓝}\hrule width\textwidth}
+
+
+
+%%% 设置章节标题页的页眉和页脚 %%%
+\fancypagestyle{plain}{%
+	\pagestyle{fancy}
+	\fancyhead[L]{}
+	\fancyhead[C]{\textcolor{靛蓝}{\leftmark}}
+	\fancyhead[R]{\textcolor{靛蓝}{第\thepage 页}}
+	\fancyfoot{}
+}
+
+%%% tcolorbox %%%
+\tcbuselibrary{theorems}
+\tcbuselibrary{skins}
+\tcbsetforeverylayer{enhanced}
+
+%%% 自定义命令 %%%
+% 专名号
+\providecommand\专名[1]{%
+	\CJKunderline{#1}%
+}
+
+% 着重号
+\providecommand\着重[1]{%
+	\CJKunderdot{\heiti{#1}}%
+}
+
+% 内联代码，单一颜色
+\providecommand\代码[1]{%
+	{\ \ttfamily{\textcolor{桃红}{#1}}}
+}
+
+%%% 自定义环境 %%%
+% 引用
+\newenvironment{引用}
+{\begin{quote}\kaishu\small}
+	{\end{quote}}
+
+\tcolorboxenvironment{引用}{
+	blanker,
+	borderline west={1mm}{0pt}{花白}
+}
+
+% 定理
+\newtcbtheorem[number within=section]{定理}{定理}{
+	fonttitle=\heiti,
+	boxrule=0.1mm,
+	before upper={\parindent2em},
+	colback=青白,
+	colframe=青碧,
+	attach boxed title to top left={xshift=12pt, yshift*=-\tcboxedtitleheight/2},
+	boxed title style={colback=青碧}
+}{定理}
+
+
+% 修改颜色
+\providecolor{橙色1}{HTML}{ff8a5c}
+\providecolor{橙色2}{HTML}{fae3d9}
+
+% 结论
+\newtcbtheorem[number within=section]{结论}{结论}{
+	fonttitle=\heiti,
+	boxrule=0.1mm,
+	before upper={\parindent2em},
+	colback=橙色2,
+	colframe=橙色2,
+	attach boxed title to top left={xshift=12pt, yshift*=-\tcboxedtitleheight/2},
+	boxed title style={colback=橙色1}
+}{结论}
+
+% 命题
+\newtcbtheorem[number within=section]{命题}{命题}{
+	fonttitle=\heiti,
+	boxrule=0.1mm,
+	before upper={\parindent2em},
+	colback=灰白,   
+	colframe=苍青,
+	attach boxed title to top left={xshift=12pt, yshift*=-\tcboxedtitleheight/2},
+	boxed title style={colback=苍青}
+}{命题}
+
+% 定义
+\newtcbtheorem[number within=section]{定义}{定义}{
+	fonttitle=\heiti,
+	boxrule=0.1mm,
+	colback=雪白,
+	before upper={\parindent2em},
+	colframe=靛青,
+	attach boxed title to top left={xshift=12pt, yshift*=-\tcboxedtitleheight/2},
+	boxed title style={colback=靛青}
+}{定义}
+
+% 文本提示框
+\newtcolorbox{文本提示框}[1]{
+	skin=empty,
+	top=0pt,
+	bottom=0pt,
+	toprule=0pt,
+	bottomrule=0pt,
+	leftrule=0pt,
+	rightrule=0pt,
+	borderline west={2pt}{0pt}{#1},
+}
+
+% 提示
+\newenvironment{提示}
+{\begin{文本提示框}{靛蓝}
+		\textcolor{靛蓝}{\heiti{提示：}}
+	}
+	{\end{文本提示框}}
+
+% 提醒
+\newenvironment{提醒}
+{\begin{文本提示框}{橙色}
+		\textcolor{橙色}{\heiti{提醒：}}
+	}
+	{\end{文本提示框}}
+
+% 注意
+\newenvironment{注意}
+{\begin{文本提示框}{丹}
+		\textcolor{丹}{\heiti{注意：}}
+	}
+	{\end{文本提示框}}
+
+
+
+%=================================
+% title page
+% define university 
+\def\@university{no university}
+\newcommand{\university}[1]{
+	\def\@university{#1}
+}
+% define course id
+\def\@courseid{CS 000}
+\newcommand{\courseid}[1]{
+	\def\@courseid{#1}
+}
+% define version
+\def\@coursedate{Great Year}
+\newcommand{\coursedate}[1]{
+	\def\@coursedate{#1}
+}
+% define instructor info
+\def\@instructor{Instructor}
+\newcommand{\instructor}[1]{
+	\def\@instructor{#1}
+}
+% make title
+\renewcommand{\maketitle}{
+	\centering
+	{\bfseries{\Large  \@university} \par}
+	\vspace{1.5cm}
+	{\Huge\bfseries{\@courseid \par \@title} \par}
+	\vspace{2cm}
+	\@instructor
+	\vspace{2cm}
+	\includegraphics[width=0.5\textwidth]{figures/abc.png}
+	\vfill
+	% Bottom of the page
+	{\Large\itshape \@author \par}
+	{\large \@coursedate \par}
+}
