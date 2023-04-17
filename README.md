@@ -1,2 +1,2 @@
 # LaTeX-sample
-简单的LaTeX模板，pdf的内容仅供查看。
+简单的LaTeX模板，内容仅供对源码正确性的参考。

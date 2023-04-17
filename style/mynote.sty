@@ -1,4 +1,5 @@
-\ProvidesPackage{mynote}[2020/09/04 v0.3.0]
+% !root = ../main.tex
+\ProvidesPackage{mynote}[2022/04/017 v1.1.0]
 
 % 中文标点符号
 \RequirePackage{xeCJKfntef}
@@ -70,12 +71,10 @@
 	filecolor=青碧,
 }
 
-
-
 %%% 页眉页脚设置 %%%
 
 \pagestyle{fancy}
-\fancyhead[L]{}
+\fancyhead[L]{\textcolor{靛蓝}{\@zhcoursename}}
 \fancyhead[C]{\textcolor{靛蓝}{\leftmark}}
 \fancyhead[R]{\textcolor{靛蓝}{第\thepage 页}}
 \fancyfoot{}
@@ -86,7 +85,7 @@
 %%% 设置章节标题页的页眉和页脚 %%%
 \fancypagestyle{plain}{%
 	\pagestyle{fancy}
-	\fancyhead[L]{}
+	\fancyhead[L]{\textcolor{靛蓝}{\@zhcoursename}}
 	\fancyhead[C]{\textcolor{靛蓝}{\leftmark}}
 	\fancyhead[R]{\textcolor{靛蓝}{第\thepage 页}}
 	\fancyfoot{}
@@ -215,10 +214,15 @@
 \newcommand{\university}[1]{
 	\def\@university{#1}
 }
-% define course id
-\def\@courseid{CS 000}
-\newcommand{\courseid}[1]{
-	\def\@courseid{#1}
+% define course chinese name
+\def\@zhcoursename{课程名}
+\newcommand{\zhcoursename}[1]{
+	\def\@zhcoursename{#1}
+}
+% define course name
+\def\@coursename{coursename}
+\newcommand{\coursename}[1]{
+	\def\@coursename{#1}
 }
 % define version
 \def\@coursedate{Great Year}
@@ -235,7 +239,7 @@
 	\centering
 	{\bfseries{\Large  \@university} \par}
 	\vspace{1.5cm}
-	{\Huge\bfseries{\@courseid \par \@title} \par}
+	{\Huge\bfseries{\@coursename \par \@title} \par}
 	\vspace{2cm}
 	\@instructor
 	\vspace{2cm}
