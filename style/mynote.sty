@@ -235,6 +235,11 @@
 \newcommand{\instructor}[1]{
 	\def\@instructor{#1}
 }
+% define cover image
+\def\@coverimage{figures/spongebob.png}
+\newcommand{\coverimage}[1]{
+	\def\@coverimage{#1}
+}
 % make title
 \renewcommand{\maketitle}{
 	\centering
@@ -244,7 +249,7 @@
 	\vspace{2cm}
 	\@instructor
 	\vspace{2cm}
-	\includegraphics[width=0.5\textwidth]{figures/abc.png}
+	\includegraphics[width=0.5\textwidth]{\@coverimage}
 	\vfill
 	% Bottom of the page
 	{\Large\itshape \@author \par}
