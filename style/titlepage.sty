@@ -1,0 +1,60 @@
+% !root = ../main.tex
+% titlepage
+\ProvidesPackage{titlepage}[2022/04/017 v1.1.0]
+
+% 中文标点符号
+\RequirePackage{xeCJKfntef}
+% 眉首眉脚
+\RequirePackage{fancyhdr}
+% 颜色支持
+\RequirePackage[dvipsnames]{xcolor}
+% 更加现代定理、引用提示
+\RequirePackage{tcolorbox}
+
+
+%=================================
+% define university 
+\def\@university{no university}
+\newcommand{\university}[1]{
+	\def\@university{#1}
+}
+% define course chinese name
+\def\@zhcoursename{课程名}
+\newcommand{\zhcoursename}[1]{
+	\def\@zhcoursename{#1}
+}
+% define course name
+\def\@coursename{coursename}
+\newcommand{\coursename}[1]{
+	\def\@coursename{#1}
+}
+% define version
+\def\@coursedate{Great Year}
+\newcommand{\coursedate}[1]{
+	\def\@coursedate{#1}
+}
+% define instructor info
+\def\@instructor{Instructor}
+\newcommand{\instructor}[1]{
+	\def\@instructor{#1}
+}
+% define cover image
+\def\@coverimage{figures/spongebob.png}
+\newcommand{\coverimage}[1]{
+	\def\@coverimage{#1}
+}
+% make title
+\renewcommand{\maketitle}{
+	\centering
+	{\bfseries{\Large  \@university} \par}
+	\vspace{1.5cm}
+	{\Huge\bfseries{\@coursename \par \@title} \par}
+	\vspace{2cm}
+	{\@instructor \par}
+	\vspace{2cm}
+	\includegraphics[width=0.5\textwidth]{\@coverimage}
+	\vfill
+	% Bottom of the page
+	{\Large\itshape \@author \par}
+	{\large \@coursedate \par}
+}

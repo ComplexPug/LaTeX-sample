@@ -1,55 +1,27 @@
 % !root = ../main.tex
 \ProvidesPackage{mynote}[2022/04/017 v1.1.0]
 
-% 中文标点符号
+\RequirePackage{graphics,graphicx}
 \RequirePackage{xeCJKfntef}
-% 眉首眉脚
 \RequirePackage{fancyhdr}
-% 颜色支持
 \RequirePackage[dvipsnames]{xcolor}
-% 代码提示
 \RequirePackage{listings}
-% 版边边距
-\RequirePackage[left=2cm, right=2cm, bottom=2cm, headheight=14pt]{geometry}
-% 更加现代定理、引用提示
+\RequirePackage[left=2cm, right=2cm, bottom=2cm, top=2cm]{geometry}
 \RequirePackage{tcolorbox}
-% 书签
 \RequirePackage[open, openlevel=2, atend]{bookmark}
-% 链接
 \RequirePackage{hyperref}
+\RequirePackage{tikz}
+\RequirePackage{amsmath, amsthm, amssymb, amsfonts}
+\RequirePackage{thmtools}
+\RequirePackage{setspace}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[english]{babel}
+\RequirePackage{framed}
 
-%%% 颜色定义 %%%
-% 水
-\providecolor{水蓝}{HTML}{d2f0f4}
-% 蓝
-\providecolor{靛蓝}{HTML}{065279}
-\providecolor{靛青}{HTML}{177cb0}
-% 红
-\providecolor{桃红}{HTML}{f47983}
-\providecolor{品红}{HTML}{f00056}
-\providecolor{丹}{HTML}{ff4e20}
-% 绿
-\providecolor{绿沈}{HTML}{0c8918}
-\providecolor{青碧}{HTML}{48c0a3}
-\providecolor{缥}{HTML}{7fecad}
-\providecolor{艾绿}{HTML}{a4e2c6}
-\providecolor{嫩绿}{HTML}{bddd22}
-\providecolor{青白}{HTML}{c0ebd7}
-% 黄
-\providecolor{姜黄}{HTML}{ffc773}
-\providecolor{橙色}{HTML}{fa8c35}
-% 灰
-\providecolor{苍白}{HTML}{d1d9e0}
-\providecolor{苍青}{HTML}{7397ab}
-% 黑
-\providecolor{漆黑}{HTML}{161823}
-\providecolor{墨色}{HTML}{50616d}
-% 白
-\providecolor{莹白}{HTML}{e3f9fd}
-\providecolor{雪白}{HTML}{f2fdff}
-\providecolor{月白}{HTML}{d6ecf0}
-\providecolor{花白}{HTML}{c2ccd0}
-\providecolor{灰白}{HTML}{f0f0f4}
+\definecolor{myblue}{HTML}{065279}
+\definecolor{mybrown}{rgb}{0.71,0.69,0.65}
+\definecolor{myred}{HTML}{f5587b}
+\definecolor{mygreen}{HTML}{48c0a3}
 
 
 %%% CTEX格式设置 %%%
@@ -58,123 +30,48 @@
 	contentsname=\textbf{Contents},
 	section={beforeskip=0pt,afterskip=3pt},    
 	chapter={beforeskip=0pt,afterskip=5pt},    	
-	part/format=\huge\bfseries\centering\color{靛蓝},
-	chapter/format=\LARGE\bfseries\centering\color{靛蓝},
-	section/format=\Large\bfseries\color{靛蓝},
-	subsection/format=\color{靛蓝},
+	part/format=\huge\bfseries\centering\color{myblue},
+	chapter/format=\LARGE\bfseries\centering\color{myblue},
+	section/format=\Large\bfseries\color{myblue},
+	subsection/format=\color{myblue},
 }
 
 %%% 链接设置 %%%
 \hypersetup{
 	colorlinks=true,
-	linkcolor=品红,
-	urlcolor=靛青,
-	filecolor=青碧,
+	linkcolor=myred,
+	urlcolor=myblue,
+	filecolor=mygreen,
 }
 
 %%% 页眉页脚设置 %%%
 
 \pagestyle{fancy}
-\fancyhead[L]{\textcolor{靛蓝}{\@zhcoursename}}
-\fancyhead[C]{\textcolor{靛蓝}{\leftmark}}
-\fancyhead[R]{\textcolor{靛蓝}{第\thepage 页}}
+\fancyhead[L]{\textcolor{black}{\@zhcoursename}}
+\fancyhead[C]{\textcolor{black}{\leftmark}}
+\fancyhead[R]{\textcolor{black}{第\thepage 页}}
 \fancyfoot{}
-\renewcommand{\headrule}{\color{靛蓝}\hrule width\textwidth}
-
+\renewcommand{\headrule}{\color{black}\hrule width\textwidth}
 
 
 %%% 设置章节标题页的页眉和页脚 %%%
 \fancypagestyle{plain}{%
 	\pagestyle{fancy}
-	\fancyhead[L]{\textcolor{靛蓝}{\@zhcoursename}}
-	\fancyhead[C]{\textcolor{靛蓝}{\leftmark}}
-	\fancyhead[R]{\textcolor{靛蓝}{第\thepage 页}}
+	\fancyhead[L]{\textcolor{black}{\@zhcoursename}}
+	\fancyhead[C]{\textcolor{black}{\leftmark}}
+	\fancyhead[R]{\textcolor{black}{第\thepage 页}}
 	\fancyfoot{}
 }
 
-%%% tcolorbox %%%
+
 \tcbuselibrary{theorems}
 \tcbuselibrary{skins}
 \tcbsetforeverylayer{enhanced}
 
 %%% 自定义命令 %%%
-% 专名号
-\providecommand\专名[1]{%
-	\CJKunderline{#1}%
-}
 
-% 着重号
-\providecommand\着重[1]{%
-	\CJKunderdot{\heiti{#1}}%
-}
-
-% 内联代码，单一颜色
-\providecommand\代码[1]{%
-	{\ \ttfamily{\textcolor{桃红}{#1}}}
-}
-
-%%% 自定义环境 %%%
-% 引用
-\newenvironment{引用}
-{\begin{quote}\kaishu\small}
-	{\end{quote}}
-
-\tcolorboxenvironment{引用}{
-	blanker,
-	borderline west={1mm}{0pt}{花白}
-}
-
-% 定理
-\newtcbtheorem[number within=section]{定理}{定理}{
-	fonttitle=\heiti,
-	boxrule=0.1mm,
-	before upper={\parindent2em},
-	colback=青白,
-	colframe=青碧,
-	attach boxed title to top left={xshift=12pt, yshift*=-\tcboxedtitleheight/2},
-	boxed title style={colback=青碧}
-}{定理}
-
-
-% 修改颜色
-\providecolor{橙色1}{HTML}{ff8a5c}
-\providecolor{橙色2}{HTML}{fae3d9}
-
-% 结论
-\newtcbtheorem[number within=section]{结论}{结论}{
-	fonttitle=\heiti,
-	boxrule=0.1mm,
-	before upper={\parindent2em},
-	colback=橙色2,
-	colframe=橙色2,
-	attach boxed title to top left={xshift=12pt, yshift*=-\tcboxedtitleheight/2},
-	boxed title style={colback=橙色1}
-}{结论}
-
-% 命题
-\newtcbtheorem[number within=section]{命题}{命题}{
-	fonttitle=\heiti,
-	boxrule=0.1mm,
-	before upper={\parindent2em},
-	colback=灰白,   
-	colframe=苍青,
-	attach boxed title to top left={xshift=12pt, yshift*=-\tcboxedtitleheight/2},
-	boxed title style={colback=苍青}
-}{命题}
-
-% 定义
-\newtcbtheorem[number within=section]{定义}{定义}{
-	fonttitle=\heiti,
-	boxrule=0.1mm,
-	colback=雪白,
-	before upper={\parindent2em},
-	colframe=靛青,
-	attach boxed title to top left={xshift=12pt, yshift*=-\tcboxedtitleheight/2},
-	boxed title style={colback=靛青}
-}{定义}
-
-% 文本提示框
-\newtcolorbox{文本提示框}[1]{
+% TextTips
+\newtcolorbox{TextTips}[1]{
 	skin=empty,
 	top=0pt,
 	bottom=0pt,
@@ -184,74 +81,54 @@
 	rightrule=0pt,
 	borderline west={2pt}{0pt}{#1},
 }
+% tips
+\newenvironment{mytips}[2][mygreen] % #1 color #2 name
+{\begin{TextTips}{#1}
+		\textcolor{#1}{\heiti{#2:}}
+}
+{\end{TextTips}}
 
-% 提示
-\newenvironment{提示}
-{\begin{文本提示框}{靛蓝}
-		\textcolor{靛蓝}{\heiti{提示：}}
-	}
-	{\end{文本提示框}}
+% 内联代码，单一颜色
+% \providecommand\code[1]{%
+% 	{\textbf{\ttfamily{\textcolor{black}{#1}}}}
+% }
 
-% 提醒
-\newenvironment{提醒}
-{\begin{文本提示框}{橙色}
-		\textcolor{橙色}{\heiti{提醒：}}
-	}
-	{\end{文本提示框}}
-
-% 注意
-\newenvironment{注意}
-{\begin{文本提示框}{丹}
-		\textcolor{丹}{\heiti{注意：}}
-	}
-	{\end{文本提示框}}
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
 
 
+\newtheorem{Define}{\large{定义}}[section]
+\newtheorem{Example}{\large{\lbrack 例 \rbrack}}[section]
 
-%=================================
-% title page
-% define university 
-\def\@university{no university}
-\newcommand{\university}[1]{
-	\def\@university{#1}
+% box
+\newenvironment{mybox}[2][green]
+% optional#1 color mandatory#2 name
+{	\begin{tcolorbox}[
+		title=#2,
+		enhanced,
+		attach boxed title to top left={
+			yshifttext=-1mm
+		},
+		colback=#1!5,
+		colframe=#1!45!black,
+		fonttitle=\heiti,
+		boxed title style={
+		% sharp corners,
+			colback=#1!45!black,
+			colframe=#1!45!black,
+		}
+	]
 }
-% define course chinese name
-\def\@zhcoursename{课程名}
-\newcommand{\zhcoursename}[1]{
-	\def\@zhcoursename{#1}
-}
-% define course name
-\def\@coursename{coursename}
-\newcommand{\coursename}[1]{
-	\def\@coursename{#1}
-}
-% define version
-\def\@coursedate{Great Year}
-\newcommand{\coursedate}[1]{
-	\def\@coursedate{#1}
-}
-% define instructor info
-\def\@instructor{Instructor}
-\newcommand{\instructor}[1]{
-	\def\@instructor{#1}
-}
-% define cover image
-\def\@coverimage{figures/spongebob.png}
-\newcommand{\coverimage}[1]{
-	\def\@coverimage{#1}
-}
-% make title
-\renewcommand{\maketitle}{
-	\centering
-	{\bfseries{\Large  \@university} \par}
-	\vspace{1.5cm}
-	{\Huge\bfseries{\@coursename \par \@title} \par}
-	\vspace{2cm}
-	{\@instructor \par}
-	\vspace{2cm}
-	\includegraphics[width=0.5\textwidth]{\@coverimage}
-	\vfill
-	% Bottom of the page
-	{\Large\itshape \@author \par}
-	{\large \@coursedate \par}
-}
+{\end{tcolorbox}}
+
+
+
+
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=0.3\textwidth]{figures/funny.png}
+% 	\includegraphics[width=0.3\textwidth]{figures/funny.png}
+% 	%\caption{这是一张图片}
+% 	%\label{fig:example}
+% \end{figure}	
