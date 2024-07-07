@@ -1,0 +1,51 @@
+\documentclass{beamer}
+\usepackage[UTF8]{ctex}
+\usetheme{Madrid}
+
+\title[短标题]{标题}
+\subtitle{副标题}
+\author{名字}
+\institute[短的机构名称]{机构名称}
+%\date[短的日期表达]{日期}
+\titlegraphic{包含图形的命令}
+\subject{主题}
+\keywords{关键字}
+\begin{document}
+	%基本格式是frame，特殊的有titlepage和空白
+	%\begin{frame}[对齐方式：]
+	%  \frametitle{帧标题}
+	%  内容
+	%\end{frame}
+	
+	%\frame{\titlepage} 
+	%\maketitle
+	\begin{frame}
+		\titlepage
+		%这里可以插入图片
+	\end{frame}
+	
+	\begin{frame}
+		\tableofcontents[sectionstyle=show,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+	\end{frame}
+	
+	%\frame{\partpage}
+	%\frame{\sectionpag}
+	\section{Part 1}
+	\begin{frame}\frametitle{母猪产后护理}
+		母猪产后要护理
+	\end{frame}
+	\section{Part 2}
+	\section{Part 3}
+	\section{Part 4}
+	
+	\begin{frame}
+		\begin{center}
+			{\Huge Thanks!}
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}[plain]
+		空白帧没有标题
+	\end{frame}
+	
+\end{document}
